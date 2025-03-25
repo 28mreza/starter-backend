@@ -4,7 +4,12 @@
   "description": "starter backend node js",
   "main": "app.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --exec ts-node src/app.ts",
+    "pull1": "npx prisma db pull --schema=./prisma/starterProject.prisma",
+    "pull2": "npx prisma db pull --schema=./prisma/sakila.prisma",
+    "generate1": "npx prisma generate --schema=./prisma/starterProject.prisma",
+    "generate2": "npx prisma generate --schema=./prisma/sakila.prisma"
   },
   "repository": {
     "type": "git",
@@ -47,6 +52,7 @@
     "@types/express-fileupload": "^1.5.1",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/md5": "^2.3.5",
+    "@types/morgan": "^1.9.9",
     "@types/node": "^22.13.13",
     "prisma": "^6.5.0",
     "ts-node": "^10.9.2",
