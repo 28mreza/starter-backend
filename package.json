@@ -1,0 +1,19 @@
+{
+  "name": "starter-backend",
+  "version": "1.0.0",
+  "description": "starter backend node js",
+  "main": "app.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/28mreza/starter-backend.git"
+  },
+  "author": "Muhamad Reza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/28mreza/starter-backend/issues"
+  },
+  "homepage": "https://github.com/28mreza/starter-backend#readme"
+}
