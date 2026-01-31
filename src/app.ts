@@ -1,20 +1,18 @@
 import path from 'path'
 import cors from 'cors'
-import express, { json, urlencoded } from 'express'
-import createRouter, { router } from 'express-file-routing'
+import express from 'express'
+import createRouter from 'express-file-routing'
 import dotenv from 'dotenv'
 import fileUpload from 'express-fileupload'
-import morgan from 'morgan'
 import 'module-alias/register'
+import { setupMorganLogger, displayStartupBanner } from '@/tools/logger'
 
 const main = async () => {
+    process.title = 'ivendor-superapps-api'
     process.env.TZ = 'Asia/Jakarta';
-    console.log(new Date().toString());
 
     dotenv.config();
 
-    const PORT = process.env.PORT || 1933
-    
     const app = express();
 
     app.use(function (req, res, next) {
@@ -32,9 +30,7 @@ const main = async () => {
     app.use(express.urlencoded({ extended: true }));
     app.use(cors());
     app.use(fileUpload());
-    app.use(morgan('dev'));
-    app.use(express.static(path.join(__dirname, '../public')));
-    app.use('/uploads', express.static(path.join('//192.168.1.122/others/MTSpeed/Evendor/uploads/vendorDocuments/')));
+    app.use(setupMorganLogger());
 
     const router = express.Router();
 
@@ -60,8 +56,11 @@ const main = async () => {
 
     app.use('/api', router);
 
-    app.listen(PORT, () => {
-        console.log(`Server started on http://localhost:${PORT}/api`);
+    const port = process.env.PORT || 1933;
+    const env = process.env.NODE_ENV || 'development';
+
+    app.listen(port, () => {
+        displayStartupBanner(port, env);
     });
 };
 
